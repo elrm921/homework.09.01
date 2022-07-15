@@ -13,10 +13,14 @@ public:
 		denominator_ = denominator;
 	}
     bool operator <(Fraction other) {
-        return ((numerator_ * other.denominator_) < (other.numerator_ * denominator_));
+        double lhs = (numerator_ * other.denominator_) / (denominator_ * other.denominator_);
+        double rhs = (other.numerator_ * denominator_) / (denominator_ * other.denominator_);
+        return (lhs) < (rhs);
     }
     bool operator >(Fraction other) {
-        return ((numerator_ * other.denominator_) > (other.numerator_ * denominator_));
+        double lhs = (numerator_ * other.denominator_) / (denominator_ * other.denominator_);
+        double rhs = (other.numerator_ * denominator_) / (denominator_ * other.denominator_);
+        return (lhs > rhs);
     }
     bool operator ==(Fraction other) {
         return !(*this < other) && !(*this > other);
