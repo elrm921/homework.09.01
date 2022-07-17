@@ -12,18 +12,11 @@ public:
 		numerator_ = numerator;
 		denominator_ = denominator;
 	}
-    bool operator <(Fraction other) {
-        double lhs = (numerator_ * other.denominator_) / (denominator_ * other.denominator_);
-        double rhs = (other.numerator_ * denominator_) / (denominator_ * other.denominator_);
-        return (lhs) < (rhs);
-    }
-    bool operator >(Fraction other) {
-        double lhs = (numerator_ * other.denominator_) / (denominator_ * other.denominator_);
-        double rhs = (other.numerator_ * denominator_) / (denominator_ * other.denominator_);
-        return (lhs > rhs);
-    }
     bool operator ==(Fraction other) {
-        return !(*this < other) && !(*this > other);
+        return ((numerator_ * other.denominator_) == (other.numerator_ * denominator_));
+    }
+    bool operator <(Fraction other) {
+        return ((numerator_ * other.denominator_) < (other.numerator_ * denominator_));
     }
     bool operator !=(Fraction other) {
         return !(*this == other);
@@ -33,6 +26,9 @@ public:
     }
     bool operator >=(Fraction other) {
         return !(*this < other);
+    }
+    bool operator >(Fraction other) {
+        return (!(*this < other) && (*this != other));
     }
 };
 
